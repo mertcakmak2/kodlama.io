@@ -9,4 +9,6 @@ public interface ICampaignManager {
 
     void deleteCampaign(Campaign campaign, Administrator administrator);
 
+    void updateCampaign(Campaign campaign, Administrator administrator);
+
 }

@@ -28,6 +28,7 @@ public class Main {
         Campaign campaign = new Campaign(1,"CovidParty");
         campaignManager.addCampaign(campaign,admin);
         //campaignManager.deleteCampaign(campaign,admin);
+        //campaignManager.updateCampaign(campaign, admin);
 
         SaleManager saleManager = new SaleManager(campaign);
         saleManager.saleGame(game,gamer);

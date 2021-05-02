@@ -15,4 +15,9 @@ public class CampaignManager implements ICampaignManager {
     public void deleteCampaign(Campaign campaign, Administrator administrator) {
         System.out.println(administrator.getName()+" tarafından "+ campaign.getName()+" kapmanyası silindi.");
     }
+
+    @Override
+    public void updateCampaign(Campaign campaign, Administrator administrator) {
+        System.out.println(administrator.getName()+" tarafından "+ campaign.getName()+" kapmanyası güncellendi.");
+    }
 }
