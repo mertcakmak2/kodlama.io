@@ -18,7 +18,7 @@ public class Main {
         User githubUser = new User(3,"test","test","test@gmail.com","121211","");
         // only Login operation
         IAuthDao authDao = new AuthUserDao();
-        // user Save and Activate operations
+        // user Save and Activate operations(save, get, activate)
         IUserDao userDao = new UserDao();
 
         UserManager userManager1 = new UserManager(authDao, userDao);
@@ -27,7 +27,7 @@ public class Main {
         userManager1.login(user);
 
         System.out.println("---------------------------------------");
-        //varolan mail ile save işlemi => failed olur
+        // failed with exist email
         //userManager1.saveUser(user);
 
         System.out.println("---------------------------------------");
