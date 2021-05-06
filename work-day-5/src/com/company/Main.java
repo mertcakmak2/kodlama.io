@@ -28,7 +28,7 @@ public class Main {
 
         System.out.println("---------------------------------------");
         // failed with exist email
-        //userManager1.saveUser(user);
+        userManager1.saveUser(user);
 
         System.out.println("---------------------------------------");
 
