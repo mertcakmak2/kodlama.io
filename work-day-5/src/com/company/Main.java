@@ -1,7 +1,11 @@
 package com.company;
 
+import com.company.Business.Abstracts.IAuthManager;
+import com.company.Business.Abstracts.IUserManager;
 import com.company.Business.Concretes.AuthManager;
+import com.company.Business.Concretes.OauthManager;
 import com.company.Business.Concretes.UserManager;
+import com.company.Core.AuthAwsAdapter;
 import com.company.Core.AuthGithubAdapter;
 import com.company.Core.AuthGoogleAdapter;
 import com.company.DataAccess.Abstracts.IAuthDao;
@@ -16,30 +20,28 @@ public class Main {
         User user = new User(1,"mert","cakmak","mertcakmak2@gmail.com","121211","");
         User googleUser = new User(2,"admin","admin","admin@gmail.com","121211","");
         User githubUser = new User(3,"test","test","test@gmail.com","121211","");
-        // only Login operation
-        IAuthDao authDao = new AuthUserDao();
-        // user Save and Activate operations(save, get, activate)
-        IUserDao userDao = new UserDao();
+        User awsUser = new User(3,"awsUser","awsUser","awsUser@gmail.com","121211","");
 
-        UserManager userManager1 = new UserManager(authDao, userDao);
-        userManager1.saveUser(user);
-        userManager1.activatedUser(user);
-        userManager1.login(user);
+        IUserManager userManager = new UserManager(new UserDao());
+        IAuthManager authManager = new AuthManager(new AuthUserDao(), new UserDao());
+        authManager.saveUser(user);
+        userManager.activatedUser(user);
+        authManager.login(user);
 
         System.out.println("---------------------------------------");
         // failed with exist email
-        userManager1.saveUser(user);
-
+        authManager.saveUser(user);
         System.out.println("---------------------------------------");
 
         //Google Auth
-        IAuthDao googleAuthDao = new AuthGoogleAdapter();
-        AuthManager googleAuthManager = new AuthManager(googleAuthDao);
-        googleAuthManager.login(googleUser);
+        IAuthManager googleOauthManager = new OauthManager(new AuthGoogleAdapter());
+        googleOauthManager.login(googleUser);
         //Github Auth
-        IAuthDao githubAuthDao = new AuthGithubAdapter();
-        AuthManager githubAuthManager = new AuthManager(githubAuthDao);
-        githubAuthManager.login(githubUser);
+        IAuthManager githubOauthManager = new OauthManager(new AuthGithubAdapter());
+        githubOauthManager.login(githubUser);
+        //Aws Auth
+        IAuthManager awsOauthManager = new OauthManager(new AuthAwsAdapter());
+        awsOauthManager.login(awsUser);
 
     }
 }

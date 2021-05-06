@@ -16,9 +16,6 @@ public class AuthGoogleAdapter implements IAuthDao {
 
     @Override
     public void saveUser(User user) {
-        if(UserRepository.existUser(user)){
-            System.out.println("Bu eposta adresi zaten entegre edilmiş.. => "+user.getEmail()); return;
-        }
         UserRepository.users.add(user);
         System.out.println("Google Auth sonrası kayıt başarılı.. => "+user.getEmail());
     }
